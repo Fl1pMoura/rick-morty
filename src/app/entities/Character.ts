@@ -5,6 +5,10 @@ export interface Character {
   species: string; // The species of the character.
   gender: 'Female' | 'Male' | 'Genderless' | 'unknown'; // The gender of the character ('Female', 'Male', 'Genderless' or 'unknown').
   image: string; // Link to the character's image. All images are 300x300px and most are medium shots or portraits since they are intended to be used as avatars.
+  origin: {
+    name: string; // Name of the character's origin location.
+    url: string; // Link to the character's origin location.
+  };
   episode: string[]; // List of episodes (urls) in which this character appeared.
 }
 
