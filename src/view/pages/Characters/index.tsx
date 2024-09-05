@@ -81,7 +81,6 @@ export function Characters() {
               <PaginationPrevious
                 onClick={prevPage}
                 className={cn(page === 1 && "pointer-events-none")}
-                href="#"
               >
                 Previous
               </PaginationPrevious>
@@ -95,7 +94,7 @@ export function Characters() {
                   className={cn(
                     "transition-all cursor-pointer",
                     pg === page &&
-                      "bg-blue-500 text-white font-bold pointer-events-none"
+                      "bg-[#4d4d4d] text-white font-bold pointer-events-none"
                   )}
                 >
                   {pg}
