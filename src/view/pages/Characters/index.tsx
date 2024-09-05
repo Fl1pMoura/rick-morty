@@ -29,6 +29,7 @@ export function Characters() {
     { length: endPage - startPage + 1 },
     (_, i) => startPage + i
   ); // Gera o array de páginas visíveis
+  console.log(page);
 
   if (isFetching) {
     return (

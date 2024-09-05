@@ -4,20 +4,21 @@ import { CharacterResponse } from "../entities/Character";
 import { useState } from "react";
 
 export function useCharacters() {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
+  console.log("useCharacters foi chamado com a página:", page);
   const { data, isFetching } = useQuery<CharacterResponse>({
     queryKey: ["get-characters", page],
     queryFn: () => charactersService.getAll(page),
   });
 
   const nextPage = () => {
-    if (page < (data?.info.pages ?? 1)) {
+    if (data?.info.next) {
       setPage((prevPage) => prevPage + 1);
     }
   };
 
   const prevPage = () => {
-    if (page > 1) {
+    if (data?.info.prev) {
       setPage((prevPage) => prevPage - 1);
     }
   };

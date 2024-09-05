@@ -61,7 +61,7 @@ export function CharacterCard({
             " absolute top-4 right-6 rounded-full flex items-center justify-center capitalize text-sm text-white min-w-8 size-8 ml-auto",
             status === "Alive" && "bg-[#88e23b] text-stone-800",
             status === "Dead" && "bg-[#931f05]",
-            status === "unknown" && "bg-[#938605]"
+            status === "unknown" && "bg-[#4d4d4d]"
           )}
         >
           {status === "Alive" && <AliveIcon classname="size-4" />}
