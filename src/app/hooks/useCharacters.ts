@@ -8,7 +8,7 @@ export function useCharacters() {
   console.log("useCharacters foi chamado com a página:", page);
   const { data, isFetching } = useQuery<CharacterResponse>({
     queryKey: ["get-characters", page],
-    queryFn: () => charactersService.getAll(page),
+    queryFn: () => charactersService.getAll({ page: page }),
   });
 
   const nextPage = () => {
