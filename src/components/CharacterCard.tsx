@@ -66,7 +66,7 @@ export function CharacterCard({
           <b className="capitalize font-normal text-projectGray-1">{origin}</b>
         </span>
       </div>
-      <LinkComponent classname="mt-6 gap-2" to="/">
+      <LinkComponent classname="mt-6 gap-2" to="/characters">
         <InfoIcon className="size-5" />
         Learn More
       </LinkComponent>

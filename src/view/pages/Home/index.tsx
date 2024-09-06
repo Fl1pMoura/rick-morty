@@ -11,8 +11,10 @@ import { CharacterCard } from "@/components/CharacterCard";
 import { EpisodeCard } from "@/components/EpisodeCard";
 import { useLocations } from "@/app/hooks/useLocations";
 import { LocationCard } from "@/components/LocationCard";
+import { useGlobal } from "@/components/GlobalContext/useGlobal";
 
 export function Home() {
+  const { activeCharacterId, setActiveCharacterId } = useGlobal();
   const [filter, setFilter] = useState("");
   const { characters, isFetchingCharacters } = useCharacters({ name: filter });
   const { episodes } = useEpisodes();
@@ -93,6 +95,7 @@ export function Home() {
                   status={character.status}
                   species={character.species}
                   gender={character.gender}
+                  onClick={setActiveCharacterId}
                 />
               ))}
             </div>

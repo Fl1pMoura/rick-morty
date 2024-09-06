@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/pagination";
 import { Loader } from "@/components/Loader";
 import { CharacterCard } from "@/components/CharacterCard";
-import { useState } from "react";
 import { VideoCardIcon } from "@/components/icons/VideoIcon";
 import { AliveIcon } from "./Components/icons/StatusIcons/AliveIcon";
 import { UnknownIcon } from "./Components/icons/StatusIcons/UnknownIcon";
