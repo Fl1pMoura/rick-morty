@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/app/utils/cn";
 
 interface LoaderProps {
   size?: number; // Tamanho opcional do loader
@@ -8,7 +8,7 @@ export function Loader({ size = 40 }: LoaderProps) {
   return (
     <div
       role="status"
-      className="w-full h-full flex items-center justify-center"
+      className="w-full h-full flex items-center justify-center flex-1"
     >
       <svg
         aria-hidden="true"

@@ -3,12 +3,16 @@ import { charactersService } from "../services/charactersService";
 import { CharacterResponse } from "../entities/Character";
 import { useState } from "react";
 
-export function useCharacters() {
+interface UseCharactersProps {
+  name?: string;
+}
+
+export function useCharacters({ name }: UseCharactersProps) {
   const [page, setPage] = useState(1);
   console.log("useCharacters foi chamado com a página:", page);
   const { data, isFetching } = useQuery<CharacterResponse>({
-    queryKey: ["get-characters", page],
-    queryFn: () => charactersService.getAll({ page: page }),
+    queryKey: ["get-characters", page, name],
+    queryFn: () => charactersService.getAll({ page, name }),
   });
 
   const nextPage = () => {

@@ -1,6 +1,5 @@
 import { cn } from "@/app/utils/cn";
 import { useCharacters } from "../../../app/hooks/useCharacters";
-import { CharacterCard } from "./Components/CharacterCard";
 import {
   Pagination,
   PaginationContent,
@@ -10,6 +9,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Loader } from "@/components/Loader";
+import { CharacterCard } from "@/components/CharacterCard";
 
 export function Characters() {
   const {
@@ -20,7 +20,7 @@ export function Characters() {
     totalPages,
     setPage,
     isFetching,
-  } = useCharacters();
+  } = useCharacters({ name: "" });
 
   // Define a lógica para exibir um intervalo de 5 páginas
   const paginationRange = 5;
@@ -45,7 +45,7 @@ export function Characters() {
               key={character.id} // Sempre adicione a chave única no map
               image={character.image}
               name={character.name}
-              location={character.location.name}
+              origin={character.origin.name}
               status={character.status}
               species={character.species}
               gender={character.gender}

@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/app/utils/cn";
 import React from "react";
 import { Link as LinkRouter } from "react-router-dom";
 

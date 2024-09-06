@@ -10,11 +10,11 @@ export type CharactersFilters = {
 export async function getAll(
   filters: CharactersFilters
 ): Promise<CharacterResponse> {
-  const { page, ...restFilters } = filters;
+  const { page, name } = filters;
   await sleep(1000);
   const { data } = await httpClient.get<CharacterResponse>(
     `/character?page=${page}`,
-    { params: restFilters }
+    { params: { page, name } }
   );
 
   return (

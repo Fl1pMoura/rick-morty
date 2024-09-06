@@ -24,7 +24,8 @@ export default {
         },
         projectGreen: {
           1: "BFDE42"
-        }
+        },
+        offWhite: "#F9F9F9"
       }
   	}
   },
