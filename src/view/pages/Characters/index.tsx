@@ -17,9 +17,10 @@ import { UnknownIcon } from "./Components/icons/StatusIcons/UnknownIcon";
 import { SpecieIcon } from "@/components/icons/SpecieIcon";
 import { GenderIcon } from "@/components/icons/GenderIcon";
 import { LocationCard } from "@/components/LocationCard";
+import { useGlobal } from "@/components/GlobalContext/useGlobal";
 
 export function Characters() {
-  const [activeCharacterId, setActiveCharacterId] = useState(1);
+  const { activeCharacterId, setActiveCharacterId } = useGlobal();
   const {
     characters,
     nextPage,
