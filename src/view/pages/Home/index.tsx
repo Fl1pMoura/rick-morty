@@ -9,11 +9,14 @@ import { cn } from "@/app/utils/cn";
 import { useEpisodes } from "@/app/hooks/useEpisodes";
 import { CharacterCard } from "@/components/CharacterCard";
 import { EpisodeCard } from "@/components/EpisodeCard";
+import { useLocations } from "@/app/hooks/useLocations";
+import { LocationCard } from "@/components/LocationCard";
 
 export function Home() {
   const [filter, setFilter] = useState("");
-  const { characters, isFetching } = useCharacters({ name: filter });
+  const { characters, isFetchingCharacters } = useCharacters({ name: filter });
   const { episodes } = useEpisodes();
+  const { locations } = useLocations();
 
   const getGridClassName = (characterCount: number) => {
     if (characterCount < 3) {
@@ -41,10 +44,10 @@ export function Home() {
         <figure>
           <img src={hero} alt="" />
         </figure>
-        <span className="border-2 border-projectBlue-1 absolute w-dvw bottom-0 left-[-27%]"></span>
+        <span className="border-2 border-projectBlue-1 absolute bottom-0 left-[-1000px] w-[200vw]"></span>
       </section>
 
-      <section className="pt-16 pb-20">
+      <section className="pt-16 pb-16">
         <div className="relative max-w-[405px] w-full mb-16">
           <input
             id="character"
@@ -76,13 +79,14 @@ export function Home() {
             </LinkComponent>
           </header>
 
-          {isFetching && <Loader />}
+          {isFetchingCharacters && <Loader />}
 
-          {!isFetching && (
+          {!isFetchingCharacters && (
             <div className={cn("grid gap-4 mt-7", gridClassName)}>
               {characters.slice(0, 8).map((character) => (
                 <CharacterCard
                   key={character.id}
+                  id={character.id}
                   origin={character.origin.name}
                   image={character.image}
                   name={character.name}
@@ -96,7 +100,7 @@ export function Home() {
         </div>
       </section>
 
-      <section className="pt-16 pb-20">
+      <section className="pb-16">
         <div>
           <header className="flex gap-4">
             <h4 className="text-projectGray-1 font-bold text-2xl">Episodes</h4>
@@ -106,15 +110,50 @@ export function Home() {
             </LinkComponent>
           </header>
 
-          {isFetching && <Loader />}
+          {isFetchingCharacters && <Loader />}
 
-          {!isFetching && (
-            <div className={cn("grid gap-4 mt-7", gridClassName)}>
+          {!isFetchingCharacters && (
+            <div
+              className={cn(
+                "grid gap-4 mt-7 grid-cols-[repeat(auto-fit,_minmax(232px,_1fr))]"
+              )}
+            >
               {episodes.slice(0, 5).map((episode) => (
                 <EpisodeCard
                   key={episode.id}
                   episode={episode.episode}
                   name={episode.name}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section className="pb-16">
+        <div>
+          <header className="flex gap-4">
+            <h4 className="text-projectGray-1 font-bold text-2xl">Locations</h4>
+            <LinkComponent classname="gap-3 text-nowrap" to="/characters">
+              <GridIcon classname="size-4" />
+              View all
+            </LinkComponent>
+          </header>
+
+          {isFetchingCharacters && <Loader />}
+
+          {!isFetchingCharacters && (
+            <div
+              className={cn(
+                "grid gap-4 mt-12 grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))]"
+              )}
+            >
+              {locations.slice(0, 5).map((location) => (
+                <LocationCard
+                  locationType="ORIGIN"
+                  name={location.name}
+                  type={location.type}
+                  key={location.id}
                 />
               ))}
             </div>

@@ -1,5 +1,5 @@
 interface VideoCardProps {
-  classname: string;
+  classname?: string;
 }
 
 export function VideoCardIcon({ classname }: VideoCardProps) {

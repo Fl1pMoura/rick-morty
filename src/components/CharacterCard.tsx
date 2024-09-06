@@ -8,23 +8,28 @@ import { UnknownIcon } from "@/view/pages/Characters/Components/icons/StatusIcon
 
 interface CharacterCardProps {
   image: string;
+  id: number;
   name: string;
   status: "Alive" | "Dead" | "unknown";
   species: string;
   gender: "Female" | "Male" | "Genderless" | "unknown";
   origin: string;
+  onClick?: (id: number) => void;
 }
 export function CharacterCard({
   image,
+  id,
   name,
   status,
   species,
   origin,
+  onClick,
 }: CharacterCardProps) {
   return (
     <article
       className="bg-offWhite rounded-[8px] min-h-[200px] flex flex-col justify-between relative p-4"
       role="button"
+      onClick={() => onClick?.(id)}
     >
       <figure
         className={cn(`relative min-h-[250px] overflow-clip rounded-2xl`)}

@@ -12,10 +12,9 @@ export async function getAll(
 ): Promise<CharacterResponse> {
   const { page, name } = filters;
   await sleep(1000);
-  const { data } = await httpClient.get<CharacterResponse>(
-    `/character?page=${page}`,
-    { params: { page, name } }
-  );
+  const { data } = await httpClient.get<CharacterResponse>(`/character`, {
+    params: { page, name },
+  });
 
   return (
     data ?? {

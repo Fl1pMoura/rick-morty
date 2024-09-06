@@ -1,19 +1,28 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { charactersService } from "../services/charactersService";
-import { CharacterResponse } from "../entities/Character";
+import { Character, CharacterResponse } from "../entities/Character";
 import { useState } from "react";
 
 interface UseCharactersProps {
   name?: string;
+  id?: number;
 }
 
-export function useCharacters({ name }: UseCharactersProps) {
+export function useCharacters({ name, id }: UseCharactersProps) {
   const [page, setPage] = useState(1);
-  console.log("useCharacters foi chamado com a página:", page);
-  const { data, isFetching } = useQuery<CharacterResponse>({
-    queryKey: ["get-characters", page, name],
-    queryFn: () => charactersService.getAll({ page, name }),
-  });
+
+  const { data, isFetching: isFetchingCharacters } =
+    useQuery<CharacterResponse>({
+      queryKey: ["get-characters", page, name],
+      queryFn: () => charactersService.getAll({ page, name }),
+      placeholderData: keepPreviousData, // Mantém os dados antigos enquanto busca novos dados
+    });
+
+  const { data: activeCharacter, isFetching: isFetchingActiveChar } =
+    useQuery<Character>({
+      queryKey: ["get-character", id],
+      queryFn: () => charactersService.getById({ id }),
+    });
 
   const nextPage = () => {
     if (data?.info.next) {
@@ -28,12 +37,14 @@ export function useCharacters({ name }: UseCharactersProps) {
   };
 
   return {
+    activeCharacter,
+    isFetchingActiveChar,
     characters: data?.results ?? [],
-    isFetching,
+    isFetchingCharacters,
     nextPage,
     prevPage,
     page,
     setPage,
-    totalPages: data?.info.pages ?? 1, // Retorna o total de páginas
+    totalPages: data?.info.pages ?? 1,
   };
 }
