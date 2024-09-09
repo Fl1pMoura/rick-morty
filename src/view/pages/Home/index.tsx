@@ -30,6 +30,7 @@ export function Home() {
   });
   const { episodes, isFetchingEpisodes } = useEpisodes({ id: activeEpisodeId });
   const { locations } = useLocations({ id: activeLocationId });
+  const characterExists = characters.length > 0;
 
   const getGridClassName = (characterCount: number) => {
     if (characterCount < 3) {
@@ -94,7 +95,7 @@ export function Home() {
 
           {isFetchingCharacters && <Loader />}
 
-          {!isFetchingCharacters && characters.length === 0 && (
+          {!isFetchingCharacters && !characterExists && (
             <img
               src={notFound}
               alt="search not found"
