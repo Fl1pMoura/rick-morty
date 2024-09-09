@@ -14,11 +14,21 @@ import { LocationCard } from "@/components/LocationCard";
 import { useGlobal } from "@/components/GlobalContext/useGlobal";
 
 export function Home() {
-  const { setActiveCharacterId, setActiveEpisodeId } = useGlobal();
+  const {
+    setActiveCharacterId,
+    setActiveEpisodeId,
+    activeEpisodeId,
+    activeLocationId,
+    setActiveLocationId,
+    activeCharacterId,
+  } = useGlobal();
   const [filter, setFilter] = useState("");
-  const { characters, isFetchingCharacters } = useCharacters({ name: filter });
-  const { episodes, isFetchingEpisodes } = useEpisodes({ id: 1 });
-  const { locations } = useLocations();
+  const { characters, isFetchingCharacters } = useCharacters({
+    name: filter,
+    id: activeCharacterId,
+  });
+  const { episodes, isFetchingEpisodes } = useEpisodes({ id: activeEpisodeId });
+  const { locations } = useLocations({ id: activeLocationId });
 
   const getGridClassName = (characterCount: number) => {
     if (characterCount < 3) {
@@ -155,6 +165,8 @@ export function Home() {
             >
               {locations.slice(0, 5).map((location) => (
                 <LocationCard
+                  onClick={setActiveLocationId}
+                  id={location.id}
                   locationType="ORIGIN"
                   name={location.name}
                   type={location.type}
