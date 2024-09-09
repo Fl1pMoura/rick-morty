@@ -38,6 +38,11 @@ export function Episodes() {
     (_, i) => startPage + i
   ); // Gera o array de páginas visíveis
 
+  function handleChangeEpisode(id: number) {
+    scrollTo({ top: 0, behavior: "smooth" });
+    setActiveEpisodeId(id);
+  }
+
   return (
     <>
       <section className="max-w-80 mx-auto lg:max-w-full lg:mx-0 flex gap-16 relative min-h-[210px] lg:min-h-[370px] lg:pt-8 lg:pb-16">
@@ -88,7 +93,7 @@ export function Episodes() {
                 <EpisodeCard
                   key={episode.id}
                   id={episode.id}
-                  onClick={setActiveEpisodeId}
+                  onClick={handleChangeEpisode}
                   episode={episode.episode}
                   name={episode.name}
                 />

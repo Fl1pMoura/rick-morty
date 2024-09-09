@@ -40,9 +40,14 @@ export function Locations() {
     (_, i) => startPage + i
   ); // Gera o array de páginas visíveis
 
+  function handleChangeLocation(id: number) {
+    scrollTo({ top: 0, behavior: "smooth" });
+    setActiveLocationId(id);
+  }
+
   return (
     <>
-      <section className="max-w-80 w-full mx-auto lg:mx-0 lg:max-w-full flex gap-16 lg:pb-16 relative min-h-[210px] lg:min-h-[370px] lg:pt-8">
+      <section className="max-w-80 w-full mx-auto lg:mx-0 lg:max-w-full flex gap-16 lg:pb-16 relative min-h-[250px] lg:min-h-[370px] lg:pt-8">
         {!activeLocation ? (
           <div className="flex items-center justify-center flex-1">
             <Loader />
@@ -86,7 +91,7 @@ export function Locations() {
             <div className="grid grid-cols-[repeat(auto-fit,_minmax(310px,_1fr))] gap-6 gap-y-10">
               {locations.map((location) => (
                 <LocationCard
-                  onClick={setActiveLocationId}
+                  onClick={handleChangeLocation}
                   locationType="LOCATION"
                   id={location.id}
                   name={location.name}

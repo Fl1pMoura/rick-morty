@@ -56,6 +56,11 @@ export function Characters() {
     (_, i) => startPage + i
   ); // Gera o array de páginas visíveis
 
+  function handleChangeCharacter(id: number) {
+    scrollTo({ top: 0, behavior: "smooth" });
+    setActiveCharacterId(id);
+  }
+
   return (
     <>
       <section className="flex flex-col max-w-80 w-full mx-auto lg:max-w-full lg:mx-0 lg:flex-row gap-5 pb-6 lg:gap-16 lg:pb-16 relative min-h-[370px] lg:pt-8">
@@ -155,7 +160,7 @@ export function Characters() {
                   status={character.status}
                   species={character.species}
                   gender={character.gender}
-                  onClick={setActiveCharacterId}
+                  onClick={handleChangeCharacter}
                 />
               ))}
             </div>
