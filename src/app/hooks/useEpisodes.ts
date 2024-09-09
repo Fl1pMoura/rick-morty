@@ -1,18 +1,26 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { episodesService } from "../services/episodesService";
-import { EpisodeResponse } from "../entities/Episodes";
+import { Episode, EpisodeResponse } from "../entities/Episodes";
 
-// interface UseEpisodesProps {
-//   name?: string;
-// }
+interface UseEpisodesProps {
+  id?: number;
+}
 
-export function useEpisodes() {
+export function useEpisodes({ id }: UseEpisodesProps) {
   const [page, setPage] = useState(1);
-  const { data, isFetching } = useQuery<EpisodeResponse>({
+
+  const { data, isFetching: isFetchingEpisodes } = useQuery<EpisodeResponse>({
     queryKey: ["get-episodes", page],
-    queryFn: () => episodesService.getAll(),
+    queryFn: () => episodesService.getAll({ page }),
+    placeholderData: keepPreviousData,
   });
+
+  const { data: activeEpisode, isFetching: isFetchingActiveEpisode } =
+    useQuery<Episode>({
+      queryKey: ["get-episode", id],
+      queryFn: () => episodesService.getById({ id }),
+    });
 
   const nextPage = () => {
     if (data?.info.next) {
@@ -28,7 +36,9 @@ export function useEpisodes() {
 
   return {
     episodes: data?.results ?? [],
-    isFetching,
+    activeEpisode,
+    isFetchingActiveEpisode,
+    isFetchingEpisodes,
     nextPage,
     prevPage,
     page,

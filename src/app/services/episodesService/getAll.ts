@@ -3,13 +3,17 @@ import { httpClient } from "../httpClient";
 import { EpisodeResponse } from "@/app/entities/Episodes";
 
 export type EpisodesFilters = {
-  name?: string;
-  episode?: number;
+  page?: number;
 };
 
-export async function getAll(): Promise<EpisodeResponse> {
+export async function getAll(
+  filters: EpisodesFilters
+): Promise<EpisodeResponse> {
+  const { page } = filters;
   await sleep(1000);
-  const { data } = await httpClient.get<EpisodeResponse>(`/episode`);
+  const { data } = await httpClient.get<EpisodeResponse>(`/episode`, {
+    params: { page },
+  });
 
   return (
     data ?? {

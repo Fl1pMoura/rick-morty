@@ -14,10 +14,10 @@ import { LocationCard } from "@/components/LocationCard";
 import { useGlobal } from "@/components/GlobalContext/useGlobal";
 
 export function Home() {
-  const { activeCharacterId, setActiveCharacterId } = useGlobal();
+  const { setActiveCharacterId, setActiveEpisodeId } = useGlobal();
   const [filter, setFilter] = useState("");
   const { characters, isFetchingCharacters } = useCharacters({ name: filter });
-  const { episodes } = useEpisodes();
+  const { episodes, isFetchingEpisodes } = useEpisodes({ id: 1 });
   const { locations } = useLocations();
 
   const getGridClassName = (characterCount: number) => {
@@ -107,15 +107,15 @@ export function Home() {
         <div>
           <header className="flex gap-4">
             <h4 className="text-projectGray-1 font-bold text-2xl">Episodes</h4>
-            <LinkComponent classname="gap-3 text-nowrap" to="/characters">
+            <LinkComponent classname="gap-3 text-nowrap" to="/episodes">
               <GridIcon classname="size-4" />
               View all
             </LinkComponent>
           </header>
 
-          {isFetchingCharacters && <Loader />}
+          {isFetchingEpisodes && <Loader />}
 
-          {!isFetchingCharacters && (
+          {!isFetchingEpisodes && (
             <div
               className={cn(
                 "grid gap-4 mt-7 grid-cols-[repeat(auto-fit,_minmax(232px,_1fr))]"
@@ -124,8 +124,10 @@ export function Home() {
               {episodes.slice(0, 5).map((episode) => (
                 <EpisodeCard
                   key={episode.id}
+                  id={episode.id}
                   episode={episode.episode}
                   name={episode.name}
+                  onClick={setActiveEpisodeId}
                 />
               ))}
             </div>
@@ -137,7 +139,7 @@ export function Home() {
         <div>
           <header className="flex gap-4">
             <h4 className="text-projectGray-1 font-bold text-2xl">Locations</h4>
-            <LinkComponent classname="gap-3 text-nowrap" to="/characters">
+            <LinkComponent classname="gap-3 text-nowrap" to="/locations">
               <GridIcon classname="size-4" />
               View all
             </LinkComponent>

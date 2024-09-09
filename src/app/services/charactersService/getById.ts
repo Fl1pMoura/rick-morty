@@ -8,7 +8,7 @@ export type CharacterFilter = {
 
 export async function getById({ id }: CharacterFilter): Promise<Character> {
   await sleep(1000);
-  const { data } = await httpClient.get<Character>(`/character/${id}`);
+  const { data } = await httpClient.get<Character>(`/character/${id || 1}`);
 
   return data;
 }
