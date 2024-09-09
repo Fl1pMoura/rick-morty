@@ -12,6 +12,7 @@ import { EpisodeCard } from "@/components/EpisodeCard";
 import { useLocations } from "@/app/hooks/useLocations";
 import { LocationCard } from "@/components/LocationCard";
 import { useGlobal } from "@/components/GlobalContext/useGlobal";
+import notFound from "@/assets/not-found.png";
 
 export function Home() {
   const {
@@ -92,6 +93,14 @@ export function Home() {
           </header>
 
           {isFetchingCharacters && <Loader />}
+
+          {!isFetchingCharacters && characters.length === 0 && (
+            <img
+              src={notFound}
+              alt="search not found"
+              className="lg:max-w-lg"
+            />
+          )}
 
           {!isFetchingCharacters && (
             <div
