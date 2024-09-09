@@ -19,7 +19,8 @@ import { LocationCard } from "@/components/LocationCard";
 import { useGlobal } from "@/components/GlobalContext/useGlobal";
 
 export function Characters() {
-  const { activeCharacterId, setActiveCharacterId } = useGlobal();
+  const { activeCharacterId, setActiveCharacterId, setActiveLocationId } =
+    useGlobal();
   const {
     characters,
     nextPage,
@@ -30,6 +31,18 @@ export function Characters() {
     isFetchingCharacters,
     activeCharacter,
   } = useCharacters({ name: "", id: activeCharacterId });
+  const locationURL = activeCharacter?.location.url;
+  const originURL = activeCharacter?.origin.url;
+  let locationId: number | undefined;
+  let originId: number | undefined;
+
+  if (locationURL) {
+    locationId = parseInt(locationURL.split("/").pop() as string, 10);
+  }
+
+  if (originURL) {
+    originId = parseInt(originURL.split("/").pop() as string, 10);
+  }
 
   // Define a lógica para exibir um intervalo de 5 páginas
   const paginationRange = 5;
@@ -101,11 +114,15 @@ export function Characters() {
               <div className="flex gap-8 mt-auto ml-auto">
                 <LocationCard
                   key={Math.random()}
+                  id={locationId}
+                  onClick={setActiveLocationId}
                   name={activeCharacter.location.name}
                   locationType="LOCATION"
                 />
                 <LocationCard
                   key={Math.random()}
+                  id={originId}
+                  onClick={setActiveLocationId}
                   name={activeCharacter.origin.name}
                   locationType="ORIGIN"
                 />

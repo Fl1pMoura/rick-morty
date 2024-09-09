@@ -7,7 +7,7 @@ import { LinkComponent } from "./LinkComponent";
 interface LocationCardProps {
   type?: string;
   name: string;
-  id: number;
+  id?: number;
   locationType: "LOCATION" | "ORIGIN";
   onClick?: (id: number) => void;
 }
@@ -23,7 +23,7 @@ export function LocationCard({
     <article
       className="bg-offWhite p-4 flex flex-col justify-center items-center rounded-2xl"
       role="button"
-      onClick={() => onClick?.(id)}
+      onClick={() => id && onClick?.(id)}
     >
       {locationType === "ORIGIN" ? (
         <PlanetIcon className="size-12 -mt-9" />
