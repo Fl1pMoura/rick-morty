@@ -47,7 +47,7 @@ export function Locations() {
 
   return (
     <>
-      <section className="max-w-80 w-full mx-auto lg:mx-0 lg:max-w-full flex gap-16 lg:pb-16 relative min-h-[250px] lg:min-h-[370px] lg:pt-8">
+      <section className="max-w-80 w-full mx-auto lg:mx-0 lg:max-w-full flex gap-16 lg:pb-16 relative pb-4 min-h-[220px] lg:min-h-[370px] lg:pt-8">
         {!activeLocation ? (
           <div className="flex items-center justify-center flex-1">
             <Loader />

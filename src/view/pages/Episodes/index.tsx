@@ -45,7 +45,7 @@ export function Episodes() {
 
   return (
     <>
-      <section className="max-w-80 mx-auto lg:max-w-full lg:mx-0 flex gap-16 relative min-h-[230px] lg:min-h-[370px] lg:pt-8 lg:pb-16">
+      <section className="max-w-80 mx-auto lg:max-w-full lg:mx-0 flex gap-16 relative min-h-[204px] pb-4 lg:min-h-[370px] lg:pt-8 lg:pb-16">
         {!activeEpisode ? (
           <div className="flex items-center justify-center flex-1">
             <Loader />

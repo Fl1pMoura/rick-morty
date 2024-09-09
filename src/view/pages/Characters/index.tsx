@@ -63,7 +63,7 @@ export function Characters() {
 
   return (
     <>
-      <section className="flex flex-col max-w-80 w-full mx-auto lg:max-w-full lg:mx-0 lg:flex-row gap-5 pb-6 lg:gap-16 lg:pb-16 relative min-h-[370px] lg:pt-8">
+      <section className="flex flex-col max-w-80 w-full mx-auto lg:max-w-full lg:mx-0 lg:flex-row gap-5 lg:gap-16 lg:pb-16 relative pb-4 min-h-[350px] lg:pt-8">
         {!activeCharacter ? (
           <div className="flex items-center justify-center flex-1">
             <Loader />
