@@ -11,7 +11,7 @@ interface EpisodeCardProps {
 export function EpisodeCard({ episode, name, id, onClick }: EpisodeCardProps) {
   return (
     <article
-      className="bg-offWhite rounded-2xl p-4"
+      className="transition-all hover:scale-105 bg-slate-100 hover:bg-slate-200 rounded-2xl p-4"
       role="button"
       onClick={() => onClick?.(id)}
     >

@@ -149,7 +149,7 @@ export function Characters() {
           <Loader />
         ) : (
           <>
-            <div className="grid grid-cols-[repeat(auto-fit,_minmax(298px,_1fr))] gap-4">
+            <div className="transition-all grid grid-cols-[repeat(auto-fit,_minmax(298px,_1fr))] gap-4">
               {characters.map((character) => (
                 <CharacterCard
                   key={character.id}

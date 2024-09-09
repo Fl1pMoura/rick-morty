@@ -27,7 +27,7 @@ export function CharacterCard({
 }: CharacterCardProps) {
   return (
     <article
-      className="bg-offWhite rounded-[8px] min-h-[200px] flex flex-col justify-between relative p-4"
+      className="transition-all lg:hover:scale-105 bg-slate-100 hover:bg-slate-200 rounded-[8px] min-h-[200px] flex flex-col justify-between relative p-4"
       role="button"
       onClick={() => onClick?.(id)}
     >

@@ -21,7 +21,7 @@ export function LocationCard({
 }: LocationCardProps) {
   return (
     <article
-      className="bg-offWhite p-4 flex flex-col justify-center items-center rounded-2xl"
+      className="transition-all bg-slate-100 hover:bg-slate-200 hover:scale-105 p-4 flex flex-col justify-center items-center rounded-2xl"
       role="button"
       onClick={() => id && onClick?.(id)}
     >

@@ -4,6 +4,7 @@ import { Characters } from "../view/pages/Characters";
 import { ViewLayout } from "@/view/layouts/ViewLayout";
 import { Episodes } from "@/view/pages/Episodes";
 import { Locations } from "@/view/pages/Locations";
+import { NotFound } from "@/view/pages/NotFound";
 
 export function Router() {
   return (
@@ -14,6 +15,7 @@ export function Router() {
           <Route path="/characters" element={<Characters />} />
           <Route path="/episodes" element={<Episodes />} />
           <Route path="/locations" element={<Locations />} />
+          <Route path="/*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
