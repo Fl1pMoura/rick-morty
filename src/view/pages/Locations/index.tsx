@@ -15,9 +15,11 @@ import { LocationCard } from "@/components/LocationCard";
 import { LocationIcon } from "@/components/icons/LocationIcon";
 import { PlanetIcon } from "@/components/icons/PlanetIcon";
 import { DimensionIcon } from "@/components/icons/DimensionIcon";
+import { useWindowWidth } from "@/app/hooks/useWindowWidth";
 
 export function Locations() {
   const { activeLocationId, setActiveLocationId } = useGlobal();
+  const windowSize = useWindowWidth();
   const {
     locations,
     nextPage,
@@ -30,7 +32,7 @@ export function Locations() {
   } = useLocations({ id: activeLocationId });
 
   // Define a lógica para exibir um intervalo de 5 páginas
-  const paginationRange = 5;
+  const paginationRange = windowSize > 1024 ? 5 : 3;
   const startPage = Math.max(1, page - Math.floor(paginationRange / 2)); // Calcula a página inicial
   const endPage = Math.min(totalPages, startPage + paginationRange - 1); // Calcula a página final
   const pages = Array.from(
@@ -40,7 +42,7 @@ export function Locations() {
 
   return (
     <>
-      <section className="flex gap-16 pb-16 relative min-h-[370px] pt-8">
+      <section className="max-w-80 w-full mx-auto lg:mx-0 lg:max-w-full flex gap-16 lg:pb-16 relative min-h-[210px] lg:min-h-[370px] lg:pt-8">
         {!activeLocation ? (
           <div className="flex items-center justify-center flex-1">
             <Loader />
@@ -48,34 +50,34 @@ export function Locations() {
         ) : (
           <>
             <div className="flex flex-col">
-              <PlanetIcon className="size-[58px] text-projectGray-1" />
-              <h2 className="text-projectGray-1 font-bold text-5xl my-6">
+              <PlanetIcon className="size-10 lg:size-[58px] text-projectGray-1" />
+              <h2 className="text-projectGray-1 font-bold text-3xl lg:text-5xl my-5 lg:my-6">
                 {activeLocation.name}
               </h2>
 
               <div className="flex items-center gap-6 text-projectGray-1">
-                <span className="flex items-center gap-2 text-lg capitalize">
+                <span className="flex items-center gap-2 text-base lg:text-lg capitalize">
                   <PlanetIcon className="size-6" /> {activeLocation.type}
                 </span>
-                <span className="flex items-center gap-2 text-lg capitalize">
+                <span className="flex items-center gap-2 text-base lg:text-lg capitalize">
                   <DimensionIcon className="size-6" />{" "}
                   {activeLocation.dimension}
                 </span>
               </div>
 
-              <span className="flex items-center gap-2 text-lg mt-[70px] text-projectGray-1">
-                <CharacterIcon className="size-6" />{" "}
+              <span className="flex items-center gap-2 text-base lg:text-lg mt-6 lg:mt-[70px] text-projectGray-1">
+                <CharacterIcon className="size-5 lg:size-6" />{" "}
                 {activeLocation.residents.length} characters located here.
               </span>
             </div>
           </>
         )}
-        <span className="border-2 border-projectBlue-1 absolute bottom-0 left-[-1000px] w-[200vw]"></span>
+        <span className="border-2 border-projectBlue-1 absolute bottom-0 left-[-200px] lg:left-[-1000px] w-[200vw]"></span>
       </section>
 
-      <section className="w-full py-20">
-        <h3 className="flex items-center text-projectGray-1 text-2xl gap-4 font-bold mb-16">
-          <LocationIcon className="size-9" /> More Locations
+      <section className="max-w-80 mx-auto lg:mx-0 lg:max-w-full w-full pt-5 lg:py-20">
+        <h3 className="flex items-center text-projectGray-1 text-lg lg:text-2xl gap-4 font-bold mb-8 lg:mb-16">
+          <LocationIcon className="size-6 lg:size-9" /> More Locations
         </h3>
         {isFetchingLocations ? (
           <Loader />

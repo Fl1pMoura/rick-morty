@@ -17,10 +17,13 @@ import { SpecieIcon } from "@/components/icons/SpecieIcon";
 import { GenderIcon } from "@/components/icons/GenderIcon";
 import { LocationCard } from "@/components/LocationCard";
 import { useGlobal } from "@/components/GlobalContext/useGlobal";
+import { CharacterIcon } from "@/components/icons/CharactersIcon";
+import { useWindowWidth } from "@/app/hooks/useWindowWidth";
 
 export function Characters() {
   const { activeCharacterId, setActiveCharacterId, setActiveLocationId } =
     useGlobal();
+  const windowSize = useWindowWidth();
   const {
     characters,
     nextPage,
@@ -45,7 +48,7 @@ export function Characters() {
   }
 
   // Define a lógica para exibir um intervalo de 5 páginas
-  const paginationRange = 5;
+  const paginationRange = windowSize > 1024 ? 5 : 3;
   const startPage = Math.max(1, page - Math.floor(paginationRange / 2)); // Calcula a página inicial
   const endPage = Math.min(totalPages, startPage + paginationRange - 1); // Calcula a página final
   const pages = Array.from(
@@ -55,14 +58,14 @@ export function Characters() {
 
   return (
     <>
-      <section className="flex gap-16 pb-16 relative min-h-[370px] pt-8">
+      <section className="flex flex-col max-w-80 w-full mx-auto lg:max-w-full lg:mx-0 lg:flex-row gap-5 pb-6 lg:gap-16 lg:pb-16 relative min-h-[370px] lg:pt-8">
         {!activeCharacter ? (
           <div className="flex items-center justify-center flex-1">
             <Loader />
           </div>
         ) : (
           <>
-            <figure className="w-[370px] rounded-2xl overflow-clip">
+            <figure className="w-56 lg:w-[370px] rounded-2xl overflow-clip">
               <img
                 className="w-full h-full object-cover"
                 src={activeCharacter.image}
@@ -70,10 +73,10 @@ export function Characters() {
               />
             </figure>
             <div className="flex flex-col">
-              <h2 className="text-projectGray-1 font-bold text-5xl">
+              <h2 className="text-projectGray-1 font-bold text-3xl lg:text-5xl">
                 {activeCharacter.name}
               </h2>
-              <span className="flex items-center gap-3 text-projectGray-1 text-xl mt-9 mb-12">
+              <span className="flex items-center gap-3 text-projectGray-1 text-lg my-5 lg:text-xl lg:mt-9 lg:mb-12">
                 <VideoCardIcon classname="size-6" />
                 Featured in {activeCharacter.episode.length} episodes
               </span>
@@ -111,7 +114,7 @@ export function Characters() {
                   </b>
                 </span>
               </div>
-              <div className="flex gap-8 mt-auto ml-auto">
+              <div className="flex flex-col gap-8 mt-10 lg:mt-auto lg:ml-auto lg:flex-row">
                 <LocationCard
                   key={Math.random()}
                   id={locationId}
@@ -130,10 +133,13 @@ export function Characters() {
             </div>
           </>
         )}
-        <span className="border-2 border-projectBlue-1 absolute bottom-0 left-[-1000px] w-[200vw]"></span>
+        <span className="border-2 border-projectBlue-1 absolute bottom-0 left-[-300px] lg:left-[-1000px] w-[200vw]"></span>
       </section>
 
-      <section className="w-full py-20">
+      <section className="max-w-80 mx-auto w-full pt-5 lg:mx-0 lg:max-w-full lg:py-20">
+        <h3 className="flex items-center text-projectGray-1 text-lg lg:text-2xl gap-4 font-bold mb-6 lg:mb-16">
+          <CharacterIcon className="size-6 lg:size-9" /> More Characters
+        </h3>
         {isFetchingCharacters ? (
           <Loader />
         ) : (

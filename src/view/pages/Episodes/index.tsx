@@ -40,7 +40,7 @@ export function Episodes() {
 
   return (
     <>
-      <section className="flex gap-16 pb-16 relative min-h-[370px] pt-8">
+      <section className="max-w-80 mx-auto lg:max-w-full lg:mx-0 flex gap-16 relative min-h-[210px] lg:min-h-[370px] lg:pt-8 lg:pb-16">
         {!activeEpisode ? (
           <div className="flex items-center justify-center flex-1">
             <Loader />
@@ -48,34 +48,36 @@ export function Episodes() {
         ) : (
           <>
             <div className="flex flex-col">
-              <VideoCardIcon classname="size-[58px] text-projectGray-1" />
-              <h2 className="text-projectGray-1 font-bold text-5xl my-6">
+              <VideoCardIcon classname="size-10 lg:size-[58px] text-projectGray-1" />
+              <h2 className="text-projectGray-1 font-bold text-3xl my-4 lg:text-5xl lg:my-6">
                 {activeEpisode.name}
               </h2>
 
               <div className="flex items-center gap-6 text-projectGray-1">
-                <span className="flex items-center gap-2 text-lg">
-                  <CalendarIcon className="size-6" /> {activeEpisode.air_date}
+                <span className="flex items-center gap-2 text-base lg:text-lg">
+                  <CalendarIcon className="size-4 lg:size-6" />{" "}
+                  {activeEpisode.air_date}
                 </span>
-                <span className="flex items-center gap-2 text-lg">
-                  <EpisodeIcon className="size-6" /> {activeEpisode.episode}
+                <span className="flex items-center gap-2 text-base lg:text-lg">
+                  <EpisodeIcon className="size-4 lg:size-6" />{" "}
+                  {activeEpisode.episode}
                 </span>
               </div>
 
-              <span className="flex items-center gap-2 text-lg mt-[70px] text-projectGray-1">
-                <CharacterIcon className="size-6" />{" "}
+              <span className="flex items-center gap-2 text-sm mt-6 lg:text-lg lg:mt-[70px] text-projectGray-1">
+                <CharacterIcon className="size-4 lg:size-6" />{" "}
                 {activeEpisode.characters.length} characters were featured in
                 this episode.
               </span>
             </div>
           </>
         )}
-        <span className="border-2 border-projectBlue-1 absolute bottom-0 left-[-1000px] w-[200vw]"></span>
+        <span className="border-2 border-projectBlue-1 absolute bottom-0 left-[-300px] lg:left-[-1000px] w-[200vw]"></span>
       </section>
 
-      <section className="w-full py-20">
-        <h3 className="flex items-center text-projectGray-1 text-2xl gap-4 font-bold mb-16">
-          <VideoCardIcon classname="size-9" /> More Episodes
+      <section className="max-w-80 mx-auto lg:max-w-full lg:mx-0 w-full pt-5 lg:py-20">
+        <h3 className="flex items-center text-projectGray-1 text-lg lg:text-2xl gap-4 font-bold mb-6 lg:mb-16">
+          <VideoCardIcon classname="size-6 lg:size-9" /> More Episodes
         </h3>
         {isFetchingEpisodes ? (
           <Loader />

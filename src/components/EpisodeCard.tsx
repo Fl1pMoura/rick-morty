@@ -15,7 +15,7 @@ export function EpisodeCard({ episode, name, id, onClick }: EpisodeCardProps) {
       role="button"
       onClick={() => onClick?.(id)}
     >
-      <span className="flex items-center gap-2 text-projectGray-1">
+      <span className="flex items-center gap-5 lg:gap-2 text-projectGray-1">
         <VideoCardIcon classname="size-6 p1" />
         <b className="font-normal">
           {name}
