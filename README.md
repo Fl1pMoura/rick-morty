@@ -75,21 +75,21 @@ The application allows users to search for characters by name, view specific det
   </tr>
   <tr>
     <td align="center">
-      <img src="https://user-images.githubusercontent.com/25181517/183890598-19a0ac2d-e88a-4005-a8df-1ee36782fde1.png" alt="React Query" width="50" />
+      <img src="https://vectorwiki.com/images/Skj0l__react-query-icon.svg" alt="React Query" width="50" />
     </td>
     <td align="center">React Query</td>
     <td>Powerful asynchronous state management for React.</td>
   </tr>
   <tr>
     <td align="center">
-      <img src="https://user-images.githubusercontent.com/25181517/183890598-19a0ac2d-e88a-4005-a8df-1ee36782fde1.png" alt="Axios" width="50" />
+      <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/axios_logo_icon_168545.png" alt="Axios" width="50" />
     </td>
     <td align="center">Axios</td>
     <td>Promise-based HTTP client for making API requests.</td>
   </tr>
   <tr>
     <td align="center">
-      <img src="https://user-images.githubusercontent.com/25181517/183890598-19a0ac2d-e88a-4005-a8df-1ee36782fde1.png" alt="ESLint" width="50" />
+      <img src="https://www.svgrepo.com/show/373587/eslint.svg" alt="ESLint" width="50" />
     </td>
     <td align="center">ESLint</td>
     <td>A tool for identifying and fixing problems in your JavaScript code.</td>
