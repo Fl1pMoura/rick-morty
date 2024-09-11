@@ -48,28 +48,60 @@ The application allows users to search for characters by name, view specific det
 
 <table>
   <tr>
+    <th>Icon</th>
+    <th>Technology</th>
+    <th>Description</th>
+  </tr>
+  <tr>
     <td align="center">
       <img src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png" alt="React" width="50" />
     </td>
+    <td align="center">React</td>
+    <td>A JavaScript library for building user interfaces.</td>
+  </tr>
+  <tr>
     <td align="center">
       <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/62091613/261395532-b40892ef-efb8-4b0e-a6b5-d1cfc2f3fc35.png" alt="Vite" width="50" />
     </td>
+    <td align="center">Vite</td>
+    <td>A fast build tool and development server for modern web projects.</td>
+  </tr>
+  <tr>
     <td align="center">
       <img src="https://user-images.githubusercontent.com/25181517/202896760-337261ed-ee92-4979-84c4-d4b829c7355d.png" alt="Tailwind CSS" width="50" />
     </td>
+    <td align="center">Tailwind CSS</td>
+    <td>A utility-first CSS framework for rapid UI development.</td>
+  </tr>
+  <tr>
     <td align="center">
       <img src="https://user-images.githubusercontent.com/25181517/183890598-19a0ac2d-e88a-4005-a8df-1ee36782fde1.png" alt="React Query" width="50" />
     </td>
+    <td align="center">React Query</td>
+    <td>Powerful asynchronous state management for React.</td>
   </tr>
   <tr>
-    <td align="center">React</td>
-    <td align="center">Vite</td>
-    <td align="center">Tailwind CSS</td>
-    <td align="center">React Query</td>
+    <td align="center">
+      <img src="https://user-images.githubusercontent.com/25181517/183890598-19a0ac2d-e88a-4005-a8df-1ee36782fde1.png" alt="Axios" width="50" />
+    </td>
+    <td align="center">Axios</td>
+    <td>Promise-based HTTP client for making API requests.</td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://user-images.githubusercontent.com/25181517/183890598-19a0ac2d-e88a-4005-a8df-1ee36782fde1.png" alt="ESLint" width="50" />
+    </td>
+    <td align="center">ESLint</td>
+    <td>A tool for identifying and fixing problems in your JavaScript code.</td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://user-images.githubusercontent.com/25181517/183890598-19a0ac2d-e88a-4005-a8df-1ee36782fde1.png" alt="TypeScript" width="50" />
+    </td>
+    <td align="center">TypeScript</td>
+    <td>Typed JavaScript that scales.</td>
   </tr>
 </table>
-
-
 
 ## Rodando localmente
 
