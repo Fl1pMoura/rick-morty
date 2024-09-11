@@ -42,6 +42,12 @@ The application allows users to search for characters by name, view specific det
 
 - **API:**
   - [Rick and Morty API](https://rickandmortyapi.com/)
+  - 
+<div style="display: flex; justify-content: space-around;">
+  <img src="https://user-images.githubusercontent.com/25181517/192108372-f71d70ac-7ae6-4c0d-8395-51d8870c2ef0.png" alt="React" width="100" />
+  <img src="https://user-images.githubusercontent.com/25181517/192108372-f71d70ac-7ae6-4c0d-8395-51d8870c2ef0.png" alt="Tailwind CSS" width="100" />
+  <img src="https://user-images.githubusercontent.com/25181517/192108372-f71d70ac-7ae6-4c0d-8395-51d8870c2ef0.png" alt="React Query" width="100" />
+</div>
 
 
 ## Rodando localmente
