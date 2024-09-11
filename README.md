@@ -31,19 +31,6 @@ The application allows users to search for characters by name, view specific det
 
 ## Technologies Used
 
-- **Frontend:**
-    - **React**: A JavaScript library for building user interfaces.
-    - **Vite**: A fast build tool and development server for modern web projects.
-    - **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
-    - **React Query**: Powerful asynchronous state management for React.
-    - **Axios**: Promise-based HTTP client for making API requests.
-    - **ESLint**: A tool for identifying and fixing problems in your JavaScript code.
-    - **TypeScript**: Typed JavaScript that scales.
-
-- **API:**
-  - [Rick and Morty API](https://rickandmortyapi.com/)
-
-  
 ### Frontend
 
 <table>
@@ -102,6 +89,9 @@ The application allows users to search for characters by name, view specific det
     <td>Typed JavaScript that scales.</td>
   </tr>
 </table>
+
+- **API:**
+  - [Rick and Morty API](https://rickandmortyapi.com/)
 
 ## Rodando localmente
 
