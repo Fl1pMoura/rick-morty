@@ -1,12 +1,3 @@
-import { cn } from "@/app/utils/cn";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 import { Loader } from "@/components/Loader";
 import { VideoCardIcon } from "@/components/icons/VideoIcon";
 import { useGlobal } from "@/components/GlobalContext/useGlobal";
@@ -15,29 +6,19 @@ import { EpisodeCard } from "@/components/EpisodeCard";
 import { CalendarIcon } from "@/components/icons/CalendarIcon";
 import { EpisodeIcon } from "@/components/icons/EpisodeIcon";
 import { CharacterIcon } from "@/components/icons/CharactersIcon";
+import { usePagination } from "@/app/hooks/usePagination";
 
 export function Episodes() {
   const { activeEpisodeId, setActiveEpisodeId } = useGlobal();
   const {
     episodes,
-    nextPage,
-    prevPage,
     page,
     totalPages,
     setPage,
     isFetchingEpisodes,
     activeEpisode,
   } = useEpisodes({ id: activeEpisodeId });
-
-  // Define a lógica para exibir um intervalo de 5 páginas
-  const paginationRange = 5;
-  const startPage = Math.max(1, page - Math.floor(paginationRange / 2)); // Calcula a página inicial
-  const endPage = Math.min(totalPages, startPage + paginationRange - 1); // Calcula a página final
-  const pages = Array.from(
-    { length: endPage - startPage + 1 },
-    (_, i) => startPage + i
-  ); // Gera o array de páginas visíveis
-
+  const PaginationComponent = usePagination({ page, setPage, totalPages });
   function handleChangeEpisode(id: number) {
     scrollTo({ top: 0, behavior: "smooth" });
     setActiveEpisodeId(id);
@@ -85,7 +66,9 @@ export function Episodes() {
           <VideoCardIcon classname="size-6 lg:size-9" /> More Episodes
         </h3>
         {isFetchingEpisodes ? (
-          <Loader />
+          <div className="my-20">
+            <Loader />
+          </div>
         ) : (
           <>
             <div className="grid grid-cols-[repeat(auto-fit,_minmax(310px,_1fr))] gap-4">
@@ -101,43 +84,7 @@ export function Episodes() {
             </div>
           </>
         )}
-        <Pagination className="mt-6">
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious
-                onClick={prevPage}
-                className={cn(page === 1 && "pointer-events-none")}
-              >
-                Previous
-              </PaginationPrevious>
-            </PaginationItem>
-
-            {pages.map((pg) => (
-              <PaginationItem key={pg}>
-                <PaginationLink
-                  onClick={() => pg !== page && setPage(pg)}
-                  className={cn(
-                    "transition-all cursor-pointer",
-                    pg === page &&
-                      "bg-[#4d4d4d] text-white font-bold pointer-events-none"
-                  )}
-                >
-                  {pg}
-                </PaginationLink>
-              </PaginationItem>
-            ))}
-
-            <PaginationItem>
-              <PaginationNext
-                onClick={nextPage}
-                className={cn(page === totalPages && "pointer-events-none")}
-                href="#"
-              >
-                Next
-              </PaginationNext>
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+        {PaginationComponent}
       </section>
     </>
   );

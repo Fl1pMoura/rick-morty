@@ -10,7 +10,6 @@ interface UseCharactersProps {
 
 export function useCharacters({ name, id }: UseCharactersProps) {
   const [page, setPage] = useState(1);
-
   const { data, isFetching: isFetchingCharacters } =
     useQuery<CharacterResponse>({
       queryKey: ["get-characters", page, name],
@@ -23,26 +22,11 @@ export function useCharacters({ name, id }: UseCharactersProps) {
       queryKey: ["get-character", id],
       queryFn: () => charactersService.getById({ id }),
     });
-
-  const nextPage = () => {
-    if (data?.info.next) {
-      setPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  const prevPage = () => {
-    if (data?.info.prev) {
-      setPage((prevPage) => prevPage - 1);
-    }
-  };
-
   return {
     activeCharacter,
     isFetchingActiveChar,
     characters: data?.results ?? [],
     isFetchingCharacters,
-    nextPage,
-    prevPage,
     page,
     setPage,
     totalPages: data?.info.pages ?? 1,

@@ -21,23 +21,9 @@ export function useLocations({ id }: UseLocationsProps) {
       queryFn: () => locationsService.getById({ id }),
     });
 
-  const nextPage = () => {
-    if (data?.info.next) {
-      setPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  const prevPage = () => {
-    if (data?.info.prev) {
-      setPage((prevPage) => prevPage - 1);
-    }
-  };
-
   return {
     locations: data?.results ?? [],
     isFetchingLocations,
-    nextPage,
-    prevPage,
     page,
     setPage,
     totalPages: data?.info.pages ?? 1, // Retorna o total de páginas

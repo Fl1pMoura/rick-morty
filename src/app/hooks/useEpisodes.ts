@@ -22,25 +22,11 @@ export function useEpisodes({ id }: UseEpisodesProps) {
       queryFn: () => episodesService.getById({ id }),
     });
 
-  const nextPage = () => {
-    if (data?.info.next) {
-      setPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  const prevPage = () => {
-    if (data?.info.prev) {
-      setPage((prevPage) => prevPage - 1);
-    }
-  };
-
   return {
     episodes: data?.results ?? [],
     activeEpisode,
     isFetchingActiveEpisode,
     isFetchingEpisodes,
-    nextPage,
-    prevPage,
     page,
     setPage,
     totalPages: data?.info.pages ?? 1, // Retorna o total de páginas

@@ -1,13 +1,5 @@
 import { cn } from "@/app/utils/cn";
 import { useCharacters } from "../../../app/hooks/useCharacters";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 import { Loader } from "@/components/Loader";
 import { CharacterCard } from "@/components/CharacterCard";
 import { VideoCardIcon } from "@/components/icons/VideoIcon";
@@ -18,22 +10,20 @@ import { GenderIcon } from "@/components/icons/GenderIcon";
 import { LocationCard } from "@/components/LocationCard";
 import { useGlobal } from "@/components/GlobalContext/useGlobal";
 import { CharacterIcon } from "@/components/icons/CharactersIcon";
-import { useWindowWidth } from "@/app/hooks/useWindowWidth";
+import { usePagination } from "@/app/hooks/usePagination";
 
 export function Characters() {
   const { activeCharacterId, setActiveCharacterId, setActiveLocationId } =
     useGlobal();
-  const windowSize = useWindowWidth();
   const {
     characters,
-    nextPage,
-    prevPage,
     page,
     totalPages,
     setPage,
     isFetchingCharacters,
     activeCharacter,
   } = useCharacters({ name: "", id: activeCharacterId });
+  const PaginationComponent = usePagination({ page, setPage, totalPages });
   const locationURL = activeCharacter?.location.url;
   const originURL = activeCharacter?.origin.url;
   let locationId: number | undefined;
@@ -46,15 +36,6 @@ export function Characters() {
   if (originURL) {
     originId = parseInt(originURL.split("/").pop() as string, 10);
   }
-
-  // Define a lógica para exibir um intervalo de 5 páginas
-  const paginationRange = windowSize > 1024 ? 5 : 3;
-  const startPage = Math.max(1, page - Math.floor(paginationRange / 2)); // Calcula a página inicial
-  const endPage = Math.min(totalPages, startPage + paginationRange - 1); // Calcula a página final
-  const pages = Array.from(
-    { length: endPage - startPage + 1 },
-    (_, i) => startPage + i
-  ); // Gera o array de páginas visíveis
 
   function handleChangeCharacter(id: number) {
     scrollTo({ top: 0, behavior: "smooth" });
@@ -146,7 +127,9 @@ export function Characters() {
           <CharacterIcon className="size-6 lg:size-9" /> More Characters
         </h3>
         {isFetchingCharacters ? (
-          <Loader />
+          <div className="my-20">
+            <Loader />
+          </div>
         ) : (
           <>
             <div className="transition-all grid grid-cols-[repeat(auto-fit,_minmax(298px,_1fr))] gap-4">
@@ -164,46 +147,9 @@ export function Characters() {
                 />
               ))}
             </div>
-
-            <Pagination className="mt-6">
-              <PaginationContent>
-                <PaginationItem>
-                  <PaginationPrevious
-                    onClick={prevPage}
-                    className={cn(page === 1 && "pointer-events-none")}
-                  >
-                    Previous
-                  </PaginationPrevious>
-                </PaginationItem>
-
-                {pages.map((pg) => (
-                  <PaginationItem key={pg}>
-                    <PaginationLink
-                      onClick={() => pg !== page && setPage(pg)}
-                      className={cn(
-                        "transition-all cursor-pointer",
-                        pg === page &&
-                          "bg-[#4d4d4d] text-white font-bold pointer-events-none"
-                      )}
-                    >
-                      {pg}
-                    </PaginationLink>
-                  </PaginationItem>
-                ))}
-
-                <PaginationItem>
-                  <PaginationNext
-                    onClick={nextPage}
-                    className={cn(page === totalPages && "pointer-events-none")}
-                    href="#"
-                  >
-                    Next
-                  </PaginationNext>
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
           </>
         )}
+        {PaginationComponent}
       </section>
     </>
   );
