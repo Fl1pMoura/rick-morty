@@ -12,9 +12,6 @@ export function Header() {
         <LinkComponent classname="w-full max-w-80 lg:w-auto" to={"/about"}>
           About me
         </LinkComponent>
-        <LinkComponent classname="w-full max-w-80 lg:w-auto" to={"/about"}>
-          About me
-        </LinkComponent>
       </nav>
     </header>
   );
