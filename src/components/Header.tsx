@@ -10,7 +10,7 @@ export function Header() {
           <img src={logo} alt="" />
         </Link>
         <LinkComponent classname="w-full max-w-80 lg:w-auto" to={"/about"}>
-          About Me
+          About Me More
         </LinkComponent>
       </nav>
     </header>
